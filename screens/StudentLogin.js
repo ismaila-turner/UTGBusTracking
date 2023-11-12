@@ -154,7 +154,8 @@ function homepage() {
 //     });
 //   });
 // };
-const handleSignIn = () => {
+
+const handleSignIn = async () => {
   if (!email || !password) {
     Alert.alert(
       'Error',
@@ -164,59 +165,53 @@ const handleSignIn = () => {
     );
     return;
   }
+
   setLoading(true);
 
-  NetInfo.fetch().then((state) => {
-    if (state.isConnected) {
-      const employeesCol = collection(db, 'studentTable');
-      const q = query(employeesCol, where('email', '==', email), where('password', '==', password));
+  try {
+    const employeesCol = collection(db, 'studentTable');
+    const q = query(employeesCol, where('email', '==', email), where('password', '==', password));
+    const querySnapshot = await getDocs(q);
 
-      getDocs(q)
-        .then((querySnapshot) => {
-          if (!querySnapshot.empty) {
-            const employee = querySnapshot.docs[0].data();
-            navigation.reset({
-              index: 0,
-              routes: [{ name: 'StudentHomepage' }],
-            });
-            Alert.alert(
-              'Success',
-              'You Can Now Track The Buses',
-              [{ text: 'OK', onPress: () => console.log('ERRO') }],
-              { cancelable: false }
-            );
-          } else {
-            Alert.alert(
-              'Error',
-              'Email or Password is incorrect',
-              [{ text: 'OK', onPress: () => console.log('Invalid email or password') }],
-              { cancelable: false }
-            );
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          Alert.alert(
-            'Error',
-            'Something went wrong. Please try again later',
-            [{ text: 'OK', onPress: () => console.log('Error') }],
-            { cancelable: false }
-          );
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
+    if (!querySnapshot.empty) {
+      const student = querySnapshot.docs[0].data();
+
+      // Check if userId exists, if not, create a fake userId
+      const userId = student.userId || 'fakeUserId';
+
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'HomePage2', params: { userId } }],
+      });
+
       Alert.alert(
-        'No Internet Connection',
-        'Please connect to the internet',
-        [{ text: 'OK', onPress: () => console.log('ok') }],
+        'Success',
+        'You Can Now Track The Buses',
+        [{ text: 'OK', onPress: () => console.log('Success') }],
         { cancelable: false }
       );
-      setLoading(false);
+    } else {
+      Alert.alert(
+        'Error',
+        'Email or Password is incorrect',
+        [{ text: 'OK', onPress: () => console.log('Invalid email or password') }],
+        { cancelable: false }
+      );
     }
-  });
+  } catch (error) {
+    console.error(error);
+    Alert.alert(
+      'Error',
+      'Something went wrong. Please try again later',
+      [{ text: 'OK', onPress: () => console.log('Error') }],
+      { cancelable: false }
+    );
+  } finally {
+    setLoading(false);
+  }
 };
+
+
 
 
 const changePassword = (email) => {
@@ -331,7 +326,7 @@ const changePassword = (email) => {
 
   <View style={styles.container}>
     
-      <Text   style={{color:'white',fontSize:20,marginTop:250,alignSelf:'center'}}  >Deverlop By Ismaila-Turner</Text>
+      <Text   style={{color:'white',fontSize:20,marginTop:250,alignSelf:'center'}}  >Deverlop By SICT</Text>
     </View>
 
  <StatusBar style="auto" />

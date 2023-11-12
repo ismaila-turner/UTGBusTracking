@@ -138,10 +138,10 @@ const StudentHomepage = ({navigation}) => {
 
     {/* Render a location filter component here */}
 
-    <TouchableOpacity style={styles.buttonmenustyle}  onPress={()=>navigation.push('Profile')} >
+    {/* <TouchableOpacity style={styles.buttonmenustyle}  onPress={()=>navigation.push('StudentProfile')} >
     <Icon    style={{   alignSelf: 'center', fontWeight:'bold'}}   name="ios-person" size={24} color="red" />
       <Text  style={{   textAlign: 'center', fontWeight:'bold' , fontSize:9}} >Profile</Text>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
     {/* Render a price filter component here */}
   
       <TouchableOpacity  style={styles.buttonmenustyle}  onPress={()=>navigation.push('Settings')} >
@@ -452,3 +452,4 @@ viewtextforsales:{
 ;
 
 export default StudentHomepage;
+

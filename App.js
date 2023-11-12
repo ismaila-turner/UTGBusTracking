@@ -17,7 +17,8 @@ import DeleteAccount from './screens/Settings/DeleteUserAccount'
 import Settings from './screens/Settings/Settings'
 import Contact from './screens/Contact'
 import StudentHomepage from './screens/StudentHomepage';
-
+import HomePage2 from './screens/HomePage2';
+import StudentProfile from './screens/StudentProfile';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
     <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: true }}>
       <Stack.Screen name="Loginpage" component={Loginpage} />
       <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen name="HomePage2" component={HomePage2} />
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name ="StudentLogin" component={StudentLogin}/>
       <Stack.Screen name="Register" component={Register}/>
@@ -38,6 +40,7 @@ export default function App() {
 <Stack.Screen name ="ForgetPassword" component={ForgotPasswordScreen}/>
 <Stack.Screen name="Contact" component ={Contact}/>
 <Stack.Screen name="StudentHomepage" component ={StudentHomepage}/>
+<Stack.Screen name="StudentProfile" component ={StudentProfile}/>
     </Stack.Navigator>
   </NavigationContainer>
   

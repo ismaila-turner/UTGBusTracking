@@ -182,9 +182,9 @@ function deleteUserAccount() {
   return (
     <ScrollView>
         <View style={[styles.container, { backgroundColor: isDarkMode ? 'black' : 'white' }]}>
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+        {/* <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Text  style={styles.textstyle} >Profile</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
        
        
           <TouchableOpacity  onPress={() => share()}>

@@ -80,41 +80,7 @@ By using our app and services, you consent to the collection, use, and sharing o
 </View   >
 
 </ScrollView>
-<ScrollView horizontal={true}   >
-<View   style={{ fontSize:10,   alignSelf: 'center',fontWeight:'bold',margin:10, color:'black', flexDirection:'row',height:'120%',backgroundColor:'white'}}  >
-<TouchableOpacity style={styles.buttonmenustyle}    onPress={refreshHomePage} >
-     
-      <Icon    style={{   alignSelf: 'center'}}   name="home" size={22} color="blue" />
-      <Text   style={{   textAlign: 'center', fontWeight:'bold', fontSize:12}}    >Home</Text>
-    </TouchableOpacity    >
-    {/* Render a list of available properties here */}
-    <TouchableOpacity style={styles.buttonmenustyle}   onPress={()=>navigation.push('Search')}  >
-    <Icon    style={{   alignSelf: 'center'}}   name="ios-search" size={22} color="blue" />
-      <Text  style={{   textAlign: 'center' , fontWeight:'bold' , fontSize:12}} >Search</Text>
-    </TouchableOpacity>
-    {/* Render a list of popular properties here */}
-    <TouchableOpacity style={styles.buttonmenustyle} >
-    <Icon    style={{   alignSelf: 'center'}}   name="ios-people" size={22} color="blue" />
-      <Text style={{   textAlign: 'center', fontWeight:'bold', fontSize:12}}  >Peoploe</Text>
-    </TouchableOpacity>
-    {/* Render a location filter component here */}
 
-    <TouchableOpacity style={styles.buttonmenustyle}  onPress={()=>navigation.push('Profile')} >
-    <Icon    style={{   alignSelf: 'center', fontWeight:'bold'}}   name="ios-person" size={22} color="blue" />
-      <Text  style={{   textAlign: 'center', fontWeight:'bold' , fontSize:12}} >Profile</Text>
-    </TouchableOpacity>
-    {/* Render a price filter component here */}
-  
-   
-    <TouchableOpacity style={styles.buttonmenustyle}  onPress={()=>navigation.push('Settings')} >
-    <Icon    style={{   alignSelf: 'center', fontWeight:'bold'}}   name="ios-settings" size={22} color="blue" />
-      <Text  style={{   textAlign: 'center', fontWeight:'bold' , fontSize:12}} >Settings</Text>
-    </TouchableOpacity>
-    {/* Render a price filter component here */}
-  
-   
-  </View>
-  </ScrollView>
 
 
 

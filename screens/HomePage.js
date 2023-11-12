@@ -177,26 +177,72 @@ const HomePage = ({navigation}) => {
   };
   // Code for reverse geocoding
 
+  const [driverLocations, setDriverLocations] = useState([]);
+  useEffect(() => {
+    const fetchDriverLocations = () => {
+      const driversRef = ref(getDatabase(), 'drivers');
+      onValue(driversRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const driversData = snapshot.val();
+          const latestLocations = [];
+          for (const userId in driversData) {
+            const userLocations = driversData[userId].locations;
+            if (userLocations) {
+              const latestLocationId = Object.keys(userLocations).reduce((latestId, locationId) => {
+                if (!latestId || userLocations[locationId].timestamp > userLocations[latestId].timestamp) {
+                  return locationId;
+                } else {
+                  return latestId;
+                }
+              }, null);
+              if (latestLocationId) {
+                latestLocations.push({
+                  id: userId,
+                  latitude: userLocations[latestLocationId].latitude,
+                  longitude: userLocations[latestLocationId].longitude,
+                });
+              }
+            }
+          }
+          setDriverLocations(latestLocations);
+        }
+      });
+    };
+
+    fetchDriverLocations();
+  }, []);
+  const [address, setAddress] = useState('');
   const getReverseGeocode = async (latitude, longitude) => {
     try {
       const response = await axios.get(
         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBRSqbeQbTsjzOs6wSwvadHltel8eK18Xw`
       );
-
+  
       // Extract the formatted address from the response
-      const address = response.data.results[0].formatted_address;
-      console.log('Formatted Address:', address);
-      console.log('User ID:', userId);
+      const formattedAddress = response.data.results[0].formatted_address;
+      console.log('Formatted Address:', formattedAddress);
       console.log('User Latitude:', latitude);
       console.log('User Longitude:', longitude);
-      // Handle the address data as needed in your application
-      return address;
+  
+      setAddress(formattedAddress);
+
+      // Update the address in the users array based on user ID
+      setUsers((prevUsers) => {
+        return prevUsers.map((user) => {
+          if (user.latitude === latitude && user.longitude === longitude) {
+            return {
+              ...user,
+              address: address,
+            };
+          }
+          return user;
+        });
+      });
     } catch (error) {
       console.error('Error fetching reverse geocode:', error);
-      return null;
     }
   };
-
+  
 
   
 
@@ -234,6 +280,9 @@ useEffect(() => {
   };
 }, []);
 
+
+
+
   return (
 
     <View  >
@@ -264,34 +313,35 @@ useEffect(() => {
       }}>
         the bus is currently {isConnected ? 'on track. Make sure to keep your internet connection on.' : 'out of track. Not connected to the internet.'}
       </Text>
-<Text  style={{fontSize:15, fontWeight:500, alignSelf:'center'}} >This is Your Bus ID: {userId}</Text>
-
-<View style={{ height: 700 }}>  
-
-<MapView style={{ flex: 1 }} region={region} showsUserLocation={true}>
-        {users.map((user) => (
-          <Marker
-            key={user.id}
-            coordinate={{ latitude: user.latitude, longitude: user.longitude }}
-            title={`Bus ID: ${user.id}`}
-            onPress={() => handleMarkerClick(user.id)} // Add onPress event to the marker
-          >
-            <Image
-              source={require('../assets/bu.jpg')} // Replace 'bus-icon.png' with the actual path to your bus icon image
-              style={{ width: 30, height: 40 }} // Adjust the width and height according to your icon size
-            />
-            <Callout>
-              <View>
-                <Text>Bus ID: {user.id}</Text>
-                <Text style={styles.calloutText}>
-                  Latitude: {user.latitude}, Longitude: {user.longitude}
-                </Text>
-              </View>
-            </Callout>
-          </Marker>
-        ))}
-      </MapView>
-      </View>
+      <Text style={{ fontSize: 15, fontWeight: '300', alignSelf: 'center' }}>This is Your Bus ID: {userId}</Text>
+      <Text style={styles.calloutText}>
+             Current Address: {address} {/* Replace user.address with the actual property where you store the address */}
+            </Text>
+<View style={{ height: 700 }}>
+  <MapView style={{ flex: 1 }} region={region} showsUserLocation={true}>
+    {users.map((user) => (
+      <Marker
+        key={user.id}
+        coordinate={{ latitude: user.latitude, longitude: user.longitude }}
+        title={`Bus ID: ${user.id}`}
+        onPress={() => handleMarkerClick(user.id)} // Add onPress event to the marker
+      >
+        <Image
+          source={require('../assets/bu.jpg')} // Replace 'bus-icon.png' with the actual path to your bus icon image
+          style={{ width: 30, height: 40 }} // Adjust the width and height according to your icon size
+        />
+        <Callout>
+          <View>
+          
+            <Text style={styles.calloutText}>
+             Current Address: {address} {/* Replace user.address with the actual property where you store the address */}
+            </Text>
+          </View>
+        </Callout>
+      </Marker>
+    ))}
+  </MapView>
+</View>
 
     </ScrollView>
 
@@ -354,7 +404,12 @@ paddingBottom:20,
       borderRadius: 10,
     },
     calloutText: {
-      color: 'black', // Text color
+      color: 'black',
+      width:200, margin:5,
+      fontSize:16,
+      width:300,
+      fontWeight:'500',alignSelf: 'center' 
+       // Text color
     },
     rectangle: {
       height: 150,

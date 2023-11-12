@@ -232,7 +232,7 @@ const changePassword = (email) => {
 
   <View style={styles.container}>
     
-      <Text   style={{color:'gray',fontSize:20,marginTop:250,alignSelf:'center'}}  >Deverlop By Ismaila-Turner</Text>
+      <Text   style={{color:'gray',fontSize:20,marginTop:250,alignSelf:'center'}}  >Deverlop By SICT</Text>
     </View>
 
  <StatusBar style="auto" />
