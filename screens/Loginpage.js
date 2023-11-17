@@ -277,21 +277,7 @@ paddingBottom:100,
     textTransform:'uppercase',
      fontStyle: 'italic',
   },
-  buttonstyle:{
-   
-    
-    margin:15,
   
-    padding:5,
-    borderRadius:10,
-  
-   backgroundColor:'red',
-   
-   borderRadius:20,
-   
-  
-
-  },
   inputstyle:{
 
 

@@ -281,18 +281,7 @@ marginLeft:5,
     color:'grey',
     
     },
-card:{
-height:400,
-backgroundColor:'white',
-elevation:10,
-shadowColor:'grey',
 
-width: 340, marginRight:0,
-marginLeft:-10,
-borderRadius:20,
-margin:5
-
-},
 
 
 
@@ -346,8 +335,8 @@ borderBottomColor:'blue',
   justifyContent: 'center',
   borderRadius:20,
   
-  color:'black'
-  
+  color:'black',
+ 
   
     },
     footer: {

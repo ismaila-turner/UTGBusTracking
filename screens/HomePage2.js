@@ -190,14 +190,10 @@ paddingBottom:20,
  
       backgroundColor: 'white',
      
-  
+     
   
   
      
-    },calloutContainer: {
-      backgroundColor: 'white', // Background color of the callout
-      padding: 10,
-      borderRadius: 10,
     },
     calloutText: {
       color: 'black',
@@ -230,71 +226,12 @@ marginRight:15,
 textAlign:'center',
 
     },
-    facilitytext:{
-marginLeft:5,
-    color:'grey',
-    
-    },
-card:{
-height:400,
-backgroundColor:'white',
-elevation:10,
-shadowColor:'grey',
-
-width: 340, marginRight:0,
-marginLeft:-10,
-borderRadius:20,
-margin:5
-
-},
-
-
-buttonmenustyle:{
-  
-  textTransform:'uppercase',
-fontWeight:'bold',
-fontSize:15,
-
-  borderBottomWidth:0,
-
- 
- 
-margin:7,
-alignSelf:'center',
-padding:2,
-backgroundColor:'white',
-
-shadowColor:'black',
-// shadowOpacity:7,
-// elevation:3,
-
-shadowOffset:{width:5,height:10},
-color:'white'
-
-
-
-
-
-},
-
-menubuttonstyle:{
-  
-  textTransform:'uppercase',
-
-  borderInStyle: 'solid',
 
  
 
-padding:10,
-backgroundColor:'white',
-flex: 0, 
-bottom:0,
 
 
 
-
-
-},
 
     textstyle:{
       margin:20,
@@ -307,22 +244,7 @@ bottom:0,
       alignSelf: 'center',
       textTransform:'capitalize',
     },
-    buttonstyle:{
-     
-      
-      margin:5,
-      backgroundColor:'lightgreen',
-      padding:5,
-      borderRadius:20,
-     
-     
-     
-       
-       
-     
-    
-  
-    },
+   
     inputstyle:{
   
   
@@ -359,28 +281,9 @@ borderBottomColor:'blue',
       
   color:'white'
     },
-textforsale:{
-
-color: 'white',
- fontSize: 15, 
 
 
-position: 'absolute', 
-padding: 7, 
-backgroundColor:'black',right:45, 
- opacity:0.8,
- width: 160,
- borderRadius:40
-},
 
-viewtextforsales:{
-  width: 0,
-          height: 100,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius:100
-
-}
 
 
   });

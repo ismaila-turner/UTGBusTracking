@@ -231,116 +231,10 @@ shadowColor:'grey',
 width: 340, marginRight:0,
 marginLeft:-10,
 borderRadius:20,
-margin:5
-
-},
-menucontainer:{
-    marginTop:'30',
-    alignItems:'center',
-  
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  justifyContent:'space-between',
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:5,
-   borderInStyle: 'solid',
-borderColor:'black',
- borderStyle: 'solid' ,
-
-
-
-
-bottom:0,
-left: 0,
-right: 0,
-
+margin:5,  
 
 },
 
-
-topmenu:{
- 
-
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:4,
-   borderInStyle: 'solid',
-borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
-
-
-fontWeight:'bold',
-
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
-
-topmenustyle:{
-  textTransform:'capitalize',
-  
-  fontWeight:'bold',
-  fontSize:15,
-    borderInStyle: 'solid',
-    borderBottomWidth:1,
-    borderRightWidth:0,
-    
-    borderColor:'black',
-    borderWidth: 0, borderColor: 'black', borderStyle: 'solid' ,
-  borderRadius:5,
-  margin:5,
-  padding:2,
-  backgroundColor:'white',
-  fontWeight:'bold',
-  shadowColor:'grey',
-  // shadowOpacity:0.5,
-  elevation:3,
-  shadowOffset:{width:5,height:5},
-  color:'white'
-
-
-
-
-
-
-},
-buttonmenustyle:{
-  
-  textTransform:'uppercase',
-fontWeight:'bold',
-fontSize:15,
-
-  borderBottomWidth:0,
-
- 
- 
-margin:7,
-alignSelf:'center',
-padding:2,
-backgroundColor:'white',
-fontWeight:'bold',
-shadowColor:'black',
-// shadowOpacity:7,
-// elevation:3,
-
-shadowOffset:{width:5,height:10},
-color:'white'
-
-
-
-
-
-},
 
 menubuttonstyle:{
   
@@ -424,28 +318,6 @@ borderBottomColor:'blue',
       
   color:'white'
     },
-textforsale:{
-
-color: 'white',
- fontSize: 15, 
- fontWeight:'bold',
-
-position: 'absolute', 
-padding: 7, 
-backgroundColor:'black',right:45, 
- opacity:0.8,
- width: 160,
- borderRadius:40
-},
-
-viewtextforsales:{
-  width: 0,
-          height: 100,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius:100
-
-}
 
 
   });

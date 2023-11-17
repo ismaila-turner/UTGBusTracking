@@ -394,7 +394,7 @@ paddingBottom:20,
  
       backgroundColor: 'white',
      
-  
+ 
   
   
      
@@ -440,50 +440,10 @@ marginRight:15,
 textAlign:'center',
 
     },
-    facilitytext:{
-marginLeft:5,
-    color:'grey',
-    
-    },
-card:{
-height:400,
-backgroundColor:'white',
-elevation:10,
-shadowColor:'grey',
-
-width: 340, marginRight:0,
-marginLeft:-10,
-borderRadius:20,
-margin:5
-
-},
 
 
 
-topmenu:{
- 
 
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
- 
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:4,
-   borderInStyle: 'solid',
-
-borderColor: 'black', borderStyle: 'solid' ,
-
-
-fontWeight:'bold',
-
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
 
 buttonmenustyle:{
   
@@ -513,24 +473,6 @@ color:'white'
 
 },
 
-menubuttonstyle:{
-  
-  textTransform:'uppercase',
-
-  borderInStyle: 'solid',
-  borderColor:'black',
-  borderWidth: 2, borderColor: 'black', borderStyle: 'solid' ,
-
-padding:10,
-backgroundColor:'white',
-flex: 0, 
-bottom:0,
-fontWeight:'bold'
-
-
-
-
-},
 
     textstyle:{
       margin:20,
@@ -569,7 +511,7 @@ shadowOpacity:0.5,
 elevation:3,
 shadowOffset:{width:5,height:5},
 padding:15,
-  borderWidth:0.5, 
+  
   backgroundColor:'white',
 borderBottomColor:'blue',
   margin:10,
@@ -595,19 +537,7 @@ borderBottomColor:'blue',
       
   color:'white'
     },
-textforsale:{
-
-color: 'white',
- fontSize: 15, 
- fontWeight:'bold',
-
-position: 'absolute', 
-padding: 7, 
-backgroundColor:'black',right:45, 
- opacity:0.8,
- width: 160,
- borderRadius:40
-},
+  
 
 viewtextforsales:{
   width: 0,

@@ -621,7 +621,8 @@ textAlign:'left'
     height: 150,
     borderRadius: 100,
     marginBottom: 20,
-    backgroundColor:'lightgrey'
+    backgroundColor:'lightgrey',
+    
   },
 });
 
