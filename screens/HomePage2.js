@@ -152,8 +152,8 @@ const HomePage2= ({navigation}) => {
 <View   style={{ fontSize:7,   alignSelf: 'center',fontWeight:'bold',margin:7, color:'black', flexDirection:'row',height:'120%',backgroundColor:'white'}}  >
 
     {/* Render a location filter component here */}
-{/* 
-    <TouchableOpacity style={styles.buttonmenustyle}  onPress={()=>navigation.push('StudentProfile')} >
+
+    {/* <TouchableOpacity style={styles.buttonmenustyle}  onPress={()=>navigation.push('StudentProfile')} >
     <Icon    style={{   alignSelf: 'center', fontWeight:'bold'}}   name="ios-person" size={24} color="red" />
       <Text  style={{   textAlign: 'center', fontWeight:'bold' , fontSize:9}} >Profile</Text>
     </TouchableOpacity> */}
@@ -203,17 +203,11 @@ paddingBottom:20,
       color: 'black',
       width:200, margin:5,
       fontSize:16,
-      width:300,
+  
       fontWeight:'500',alignSelf: 'center' 
        // Text color
     },
-    rectangle: {
-      height: 150,
-      margin: 20,
-      borderRadius: 10,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+ 
     text: {
       fontSize: 20,
       color: 'white',
@@ -253,86 +247,8 @@ borderRadius:20,
 margin:5
 
 },
-menucontainer:{
-    marginTop:'30',
-    alignItems:'center',
-  
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  justifyContent:'space-between',
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:5,
-   borderInStyle: 'solid',
-borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
-
-textTransform:'uppercase',
 
 
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
-
-
-topmenu:{
- 
-
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  justifyContent:'space-between',
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:4,
-   borderInStyle: 'solid',
-borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
-
-textTransform:'uppercase',
-fontWeight:'bold',
-
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
-
-topmenustyle:{
-  textTransform:'capitalize',
-  textTransform:'uppercase',
-  fontWeight:'bold',
-  fontSize:15,
-    borderInStyle: 'solid',
-    borderBottomWidth:1,
-    borderRightWidth:0,
-    
-    borderColor:'black',
-    borderWidth: 0, borderColor: 'black', borderStyle: 'solid' ,
-  borderRadius:5,
-  margin:5,
-  padding:2,
-  backgroundColor:'white',
-  fontWeight:'bold',
-  shadowColor:'grey',
-  // shadowOpacity:0.5,
-  elevation:3,
-  shadowOffset:{width:5,height:5},
-  color:'white'
-
-
-
-
-
-
-},
 buttonmenustyle:{
   
   textTransform:'uppercase',
@@ -347,7 +263,7 @@ margin:7,
 alignSelf:'center',
 padding:2,
 backgroundColor:'white',
-fontWeight:'bold',
+
 shadowColor:'black',
 // shadowOpacity:7,
 // elevation:3,
@@ -366,14 +282,14 @@ menubuttonstyle:{
   textTransform:'uppercase',
 
   borderInStyle: 'solid',
-  borderColor:'black',
-  borderWidth: 2, borderColor: 'black', borderStyle: 'solid' ,
+
+ 
 
 padding:10,
 backgroundColor:'white',
 flex: 0, 
 bottom:0,
-fontWeight:'bold'
+
 
 
 
@@ -416,7 +332,7 @@ shadowColor:'black',
 shadowOpacity:0.5,
 elevation:3,
 shadowOffset:{width:5,height:5},
-padding:15,
+
   borderWidth:0.5, 
   backgroundColor:'white',
 borderBottomColor:'blue',
@@ -447,7 +363,7 @@ textforsale:{
 
 color: 'white',
  fontSize: 15, 
- fontWeight:'bold',
+
 
 position: 'absolute', 
 padding: 7, 

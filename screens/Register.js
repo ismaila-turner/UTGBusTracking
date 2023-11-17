@@ -96,7 +96,9 @@ export default function Register  ({navigation}) {
       setAddress('');
       setEmail('');
       setPassword('');
-      Alert.alert('Registersuccessfully');
+      Alert.alert('Register successfully! Please Login');
+      navigation.navigate('StudentLogin');
+
     } catch (err) {
       console.error('Error adding Student:', err);
       Alert.alert('Error adding Student:', err.message);
@@ -124,13 +126,13 @@ export default function Register  ({navigation}) {
       />
       <TextInput
         style={styles.input}
-        placeholder="Emial"
+        placeholder="UTG Emial"
         value={email}
         onChangeText={setEmail}
       />
          <TextInput
         style={styles.input}
-        placeholder="Password"
+        placeholder="Password(MAT Number)"
         value={password}
         onChangeText={setPassword}
       />

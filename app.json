@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/bus.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ismailajavis.BusDriversTracker"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6a273e19-8349-48d3-9330-7cc6f555fae9"
+      }
     }
   }
 }

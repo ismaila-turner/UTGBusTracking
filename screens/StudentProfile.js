@@ -13,8 +13,9 @@ import { StackActions } from '@react-navigation/native';
 import {  createUserWithEmailAndPassword,EmailAuthProvider,reauthenticateWithCredential } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { getAuth,  } from 'firebase/auth';
-import { getFirestore, collection, getDocs, query, where } from '../firebase';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
+import { initializeApp } from 'firebase/app';
 const StudentProfile = ({ navigation }) => {
   const [name, setname] = useState('');
   const [address, setAddress] = useState('');
@@ -27,210 +28,66 @@ const StudentProfile = ({ navigation }) => {
   const [creationTime, setCreationTime] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [lastSignInTime, setLastSignInTime] = useState(null);
+
+
+  const firebaseConfig = {
+    // Add your Firebase config here
+    apiKey: "AIzaSyBn4dN2LqHTEqMivhKoFR6orrvdZottX_Y",
+    authDomain: "driversbustracker.firebaseapp.com",
+    projectId: "driversbustracker",
+    storageBucket: "driversbustracker.appspot.com",
+    messagingSenderId: "710645626633",
+    appId: "1:710645626633:web:7a228738a5f747a2d685d8",
+    measurementId: "G-LZXYBFR4T3"
+  
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+
+
   useEffect(() => {
-    // Create an unsubscribe function to detach the observer when the component unmounts
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       try {
         if (user) {
-          const db = getFirestore();
           const studentTableRef = collection(db, 'studentTable');
-          const studentQuery = query(studentTableRef, where('userId', '==', user.uid));
+          const studentQuery = query(studentTableRef, where('email', '==', user.email));
           const snapshot = await getDocs(studentQuery);
-
+  
           if (!snapshot.empty) {
             snapshot.forEach((doc) => {
               const userData = doc.data();
               setEmail(userData.email);
               setAddress(userData.address);
+              // Set other user data as needed
             });
           }
         } else {
-          // User is not signed in, redirect to the login screen or handle accordingly
+          // User is not signed in, redirect to the login screen
           console.warn('User is not signed in. Redirecting to login screen.');
-          // You can use the navigation object to navigate to your login screen
-          // Example: navigation.navigate('Login');
+          // Replace 'Login' with your actual login screen name
+          // For example, if you're using React Navigation:
+          // navigation.navigate('Login');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     });
-
+  
     // Clean up the observer when the component unmounts
     return () => unsubscribe();
   }, []);
-
-
-  const logout = () => {
-    Alert.alert(
-      'Confirm',
-      'Are you sure you want to sign out?',
-      [
-        { text: 'Cancel', onPress: () => console.log('Cancel pressed') },
-        {
-          text: 'OK',
-          onPress: () => {
-            auth.signOut()
-              .then(() => {
-                alert('Logged out successfully');
-                navigation.reset({
-                  index: 0,
-                  routes: [{ name: 'Welcome' }],
-                });
-              })
-              .catch(error => alert(error.message));
-          },
-        },
-      ],
-      { cancelable: false }
-    );
-  };
   
-
-//   useEffect(() => {
-//     if (auth.currentUser) {
-//       setCreationTime(auth.currentUser.metadata.creationTime);
-//     }
-//   }, []);
-
-  // TO DISPLAY THE USER SIGN IN DATE 
-//   useEffect(() => {
-//     if (auth.currentUser) {
-//       setCreationTime(auth.currentUser.metadata.creationTime);
-//       setLastSignInTime(auth.currentUser.metadata.lastSignInTime);
-//     }
-//   }, []);
-
-
-
-// active if the user is log in
-//   useEffect(() => {
-//     const unsubscribe = auth.onAuthStateChanged((user) => {
-//       setIsActive(!!user);
-//     });
-
-//     return unsubscribe;
-//   }, []);
-
-
-  const changePassword = () => {
-    const user = auth.currentUser;
-    if (!user) {
-      // User is not signed in
-      alert("User is not signed in");
-      return;
-    }
-    
-    // Send password reset email
-    sendPasswordResetEmail(auth, user.email)
-      .then(() => {
-        // Prompt user to enter new password
-        let newPassword 
-       
-        // Reset password
-        user.updatePassword(newPassword)
-          .then(() => {
-            // Show success message
-            alert("Password reset successful");
-          })
-          .catch((error) => {
-            // Show error message
-            alert("An Email will be  send to you to change your password");
-          });
-      })
-      .catch((error) => {
-        // Show error message
-        alert("An Email has been send to you to change your password");
-      });
-  };
+  
 
 
 
 function whenaccountdeleted() {
   navigation.dispatch(StackActions.replace('Loginpage'));
 }
-function deleteUserAccount() {
-  Alert.alert(
-    'Delete Account',
-    'Are you sure you want to delete your account? This action cannot be undone.',
-    [
-      {
-        text: 'Cancel',
-        style: 'cancel'
-      },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: () => {
-          const auth = getAuth();
-          const user = auth.currentUser;
-
-          // Prompt the user to reauthenticate before deleting their account
-          
-          Alert.prompt(
-            'Password Required',
-            'Please enter your password to delete your account.',
-            [
-              { text: 'Cancel', style: 'cancel' },
-              {
-                text: 'OK',
-                onPress: (password) => {
-                  const credential = EmailAuthProvider.credential(
-                    user.email,
-                    password
-                  );
-
-                  // Reauthenticate the user with the credential
-                  const userCredential = signInWithEmailAndPassword(auth, user.email, password);
-                  userCredential.then((userCredential) => {
-                    userCredential.user.delete().then(() => {
-                      console.log("User account deleted successfully.");
-                      Alert.alert('Account Deleted', 'Your account has been deleted.');
-                      whenaccountdeleted();
-
-                      // Redirect user to a different page or show success message
-                    }).catch((error) => {
-                      console.log("Error deleting user account:", error);
-                      Alert.alert('Error', 'There was an error deleting your account.');
-                    });
-                  }).catch((error) => {
-                    console.log("Error reauthenticating user:", error);
-                    Alert.alert('Error', 'You entered a wrong password for this account ');
-                  });
-                }
-              }
-            ],
-            'secure-text'
-          );
-        }
-      }
-    ],
-    { cancelable: true }
-  );
-}
-
 
 // button 
-const share = async () => {
-  try {
-      const result = await Share.share({
-        url: 'https://expo.io',
-          message: 'Check out this awesome app!',
-          title: 'Invite a friend'
-      });
-
-      if (result.action === Share.sharedAction) {
-          if (result.activityType) {
-              // shared with activity type of result.activityType
-          } else {
-              // shared
-          }
-      } else if (result.action === Share.dismissedAction) {
-          // dismissed
-      }
-  } catch (error) {
-      alert(error.message);
-  }
-};
 
 function refreshHomePage() {
   navigation.reset({
@@ -238,12 +95,12 @@ function refreshHomePage() {
     routes: [{ name: 'HomePage' }],
   });
 }
-function signout() {
-  navigation.reset({
-    index: 0,
-    routes: [{ name: 'WELCOME TO NEK GAMBIA' }],
-  });
-}
+// function signout() {
+//   navigation.reset({
+//     index: 0,
+//     routes: [{ name: 'WELCOME TO NEK GAMBIA' }],
+//   });
+// }
 // const handleActiveClick = () => {
 //   if (isActive) {
 //     alert('You are logged in!');
@@ -439,33 +296,7 @@ const styles = StyleSheet.create({
 
   },
 
-  buttonmenustyle:{
   
-    textTransform:'uppercase',
-  fontWeight:'bold',
-  fontSize:22,
-    borderInStyle: 'solid',
-    borderBottomWidth:0,
-    borderRightWidth:1,
-    borderColor:'black',
-    borderWidth: 0, borderColor: 'black', borderStyle: 'solid' ,
-  borderRadius:10,
-  margin:10,
-  alignSelf:'center',
-  padding:2,
-  backgroundColor:'white',
-  fontWeight:'bold',
-  shadowColor:'black',
-  shadowOpacity:7,
-  elevation:3,
-  shadowOffset:{width:5,height:10},
-  color:'white'
-  
-  
-  
-  
-  
-  },
 
   header: {
     alignItems: 'center',

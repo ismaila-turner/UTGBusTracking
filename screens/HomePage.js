@@ -407,7 +407,7 @@ paddingBottom:20,
       color: 'black',
       width:200, margin:5,
       fontSize:16,
-      width:300,
+ 
       fontWeight:'500',alignSelf: 'center' 
        // Text color
     },
@@ -457,31 +457,7 @@ borderRadius:20,
 margin:5
 
 },
-menucontainer:{
-    marginTop:'30',
-    alignItems:'center',
-  
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  justifyContent:'space-between',
-  borderTopColor:'black',
 
-  textTransform:'uppercase',
-margin:5,
-   borderInStyle: 'solid',
-borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
-
-textTransform:'uppercase',
-
-
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
 
 
 topmenu:{
@@ -490,16 +466,16 @@ topmenu:{
   justifyContent: 'flex-end', padding: 0, 
   flexDirection:'row',
   
-  justifyContent:'space-between',
+ 
   borderTopColor:'black',
 
   textTransform:'uppercase',
 margin:4,
    borderInStyle: 'solid',
-borderColor:'black',
+
 borderColor: 'black', borderStyle: 'solid' ,
 
-textTransform:'uppercase',
+
 fontWeight:'bold',
 
 bottom:0,
@@ -509,34 +485,6 @@ right: 0,
 
 },
 
-topmenustyle:{
-  textTransform:'capitalize',
-  textTransform:'uppercase',
-  fontWeight:'bold',
-  fontSize:15,
-    borderInStyle: 'solid',
-    borderBottomWidth:1,
-    borderRightWidth:0,
-    
-    borderColor:'black',
-    borderWidth: 0, borderColor: 'black', borderStyle: 'solid' ,
-  borderRadius:5,
-  margin:5,
-  padding:2,
-  backgroundColor:'white',
-  fontWeight:'bold',
-  shadowColor:'grey',
-  // shadowOpacity:0.5,
-  elevation:3,
-  shadowOffset:{width:5,height:5},
-  color:'white'
-
-
-
-
-
-
-},
 buttonmenustyle:{
   
   textTransform:'uppercase',
@@ -551,7 +499,7 @@ margin:7,
 alignSelf:'center',
 padding:2,
 backgroundColor:'white',
-fontWeight:'bold',
+
 shadowColor:'black',
 // shadowOpacity:7,
 // elevation:3,
@@ -627,7 +575,7 @@ borderBottomColor:'blue',
   margin:10,
   
   marginLeft:16,
-  padding:15,
+
   width:335,
   alignItems: 'center',
   justifyContent: 'center',

@@ -208,11 +208,11 @@ function deleteUserAccount() {
         <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
           <Text  style={styles.textstyle} >Contact us</Text>
         </TouchableOpacity>
-
+{/* 
         <TouchableOpacity onPress={() => {changePassword()}}>
           <Text  style={styles.textstyle} >Change Password</Text>
 
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity onPress={logout}>
           <Text  style={styles.textstyle} >Logout</Text>

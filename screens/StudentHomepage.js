@@ -123,7 +123,7 @@ const StudentHomepage = ({navigation}) => {
       title={`Driver ID: ${location.id}`}
     >
       <Image
-        source={require('../assets/bu.jpg')} // Replace with the actual path to your driver icon image
+        // source={require('../assets/bu.jpg')} // Replace with the actual path to your driver icon image
         style={{ width: 30, height: 30 }} // Adjust the width and height according to your icon size
       />
     </Marker>
@@ -248,9 +248,9 @@ menucontainer:{
 margin:5,
    borderInStyle: 'solid',
 borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
+ borderStyle: 'solid' ,
 
-textTransform:'uppercase',
+
 
 
 bottom:0,
@@ -267,7 +267,7 @@ topmenu:{
   justifyContent: 'flex-end', padding: 0, 
   flexDirection:'row',
   
-  justifyContent:'space-between',
+  
   borderTopColor:'black',
 
   textTransform:'uppercase',
@@ -276,7 +276,7 @@ margin:4,
 borderColor:'black',
 borderColor: 'black', borderStyle: 'solid' ,
 
-textTransform:'uppercase',
+
 fontWeight:'bold',
 
 bottom:0,
@@ -288,7 +288,7 @@ right: 0,
 
 topmenustyle:{
   textTransform:'capitalize',
-  textTransform:'uppercase',
+  
   fontWeight:'bold',
   fontSize:15,
     borderInStyle: 'solid',
@@ -404,7 +404,7 @@ borderBottomColor:'blue',
   margin:10,
   
   marginLeft:16,
-  padding:15,
+
   width:335,
   alignItems: 'center',
   justifyContent: 'center',

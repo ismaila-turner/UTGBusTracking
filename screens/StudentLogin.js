@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native';
 import { Image } from 'react-native';
 import { NavigationContainer} from "@react-navigation/native";
 // import * as Google from 'expo-google-app-auth';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome } from 'react-native-vector-icons';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { Svg } from 'react-native-svg';
@@ -155,7 +155,7 @@ function homepage() {
 //   });
 // };
 
-const handleSignIn = async () => {
+const handleSignIn = () => {
   if (!email || !password) {
     Alert.alert(
       'Error',
@@ -165,53 +165,64 @@ const handleSignIn = async () => {
     );
     return;
   }
-
   setLoading(true);
 
-  try {
-    const employeesCol = collection(db, 'studentTable');
-    const q = query(employeesCol, where('email', '==', email), where('password', '==', password));
-    const querySnapshot = await getDocs(q);
+  NetInfo.fetch().then((state) => {
+    if (state.isConnected) {
+      const employeesCol = collection(db, 'studentTable');
+      const q = query(employeesCol, where('email', '==', email), where('password', '==', password));
 
-    if (!querySnapshot.empty) {
-      const student = querySnapshot.docs[0].data();
+      getDocs(q)
+        .then(async (querySnapshot) => {
+          if (!querySnapshot.empty) {
+            const employee = querySnapshot.docs[0].data();
 
-      // Check if userId exists, if not, create a fake userId
-      const userId = student.userId || 'fakeUserId';
+            // Save user details in AsyncStorage
+            await AsyncStorage.setItem('userDetails', JSON.stringify(employee));
 
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'HomePage2', params: { userId } }],
-      });
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'HomePage2' }],
+            });
 
-      Alert.alert(
-        'Success',
-        'You Can Now Track The Buses',
-        [{ text: 'OK', onPress: () => console.log('Success') }],
-        { cancelable: false }
-      );
+            Alert.alert(
+              'Success',
+              'You can now track the buses',
+              [{ text: 'OK', onPress: () => console.log('Success') }],
+              { cancelable: false }
+            );
+          } else {
+            Alert.alert(
+              'Error',
+              'Email or Password is incorrect',
+              [{ text: 'OK', onPress: () => console.log('Invalid email or password') }],
+              { cancelable: false }
+            );
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          Alert.alert(
+            'Error',
+            'Something went wrong. Please try again later',
+            [{ text: 'OK', onPress: () => console.log('Error') }],
+            { cancelable: false }
+          );
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     } else {
       Alert.alert(
-        'Error',
-        'Email or Password is incorrect',
-        [{ text: 'OK', onPress: () => console.log('Invalid email or password') }],
+        'No Internet Connection',
+        'Please connect to the internet',
+        [{ text: 'OK', onPress: () => console.log('ok') }],
         { cancelable: false }
       );
+      setLoading(false);
     }
-  } catch (error) {
-    console.error(error);
-    Alert.alert(
-      'Error',
-      'Something went wrong. Please try again later',
-      [{ text: 'OK', onPress: () => console.log('Error') }],
-      { cancelable: false }
-    );
-  } finally {
-    setLoading(false);
-  }
+  });
 };
-
-
 
 
 const changePassword = (email) => {
@@ -380,28 +391,7 @@ const styles = StyleSheet.create({
   
 
   },
-  inputstyle:{
-
-
-
-borderBottomColor:'black',
-borderBottomWidth:1.9,
-backgroundColor:'white',
-fontSize:18,
-margin:10,
-
-marginLeft:8,
-padding:14,
-width:320,
-justifyContent:'center',
-alignItems:'center',
-
-
-borderRadius:10,
-
-
-
-  },inputstyle:{
+ inputstyle:{
 
 
 

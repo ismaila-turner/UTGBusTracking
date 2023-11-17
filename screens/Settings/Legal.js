@@ -113,144 +113,8 @@ marginLeft:5,
     color:'grey',
     
     },
-card:{
-height:400,
-backgroundColor:'white',
-elevation:10,
-shadowColor:'grey',
-
-width: 340, marginRight:0,
-marginLeft:-10,
-borderRadius:20,
-margin:5
-
-},
-menucontainer:{
-    marginTop:'30',
-    alignItems:'center',
-  
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  justifyContent:'space-between',
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:5,
-   borderInStyle: 'solid',
-borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
-
-textTransform:'uppercase',
 
 
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
-
-
-topmenu:{
- 
-
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  justifyContent:'space-between',
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:4,
-   borderInStyle: 'solid',
-borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
-
-textTransform:'uppercase',
-fontWeight:'bold',
-
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
-
-topmenustyle:{
-  textTransform:'capitalize',
-  textTransform:'uppercase',
-  fontWeight:'bold',
-  fontSize:20,
-    borderInStyle: 'solid',
-    borderBottomWidth:0,
-    borderRightWidth:0,
-    
-    borderColor:'black',
-    borderWidth: 0, borderColor: 'black', borderStyle: 'solid' ,
-  borderRadius:5,
-  margin:5,
-  padding:7,
-  backgroundColor:'white',
-  fontWeight:'bold',
-  shadowColor:'blue',
-  shadowOpacity:6,
-  elevation:3,
-  shadowOffset:{width:5,height:5},
-  color:'white'
-
-
-
-
-
-
-},
-buttonmenustyle:{
-  
-  textTransform:'uppercase',
-fontWeight:'bold',
-fontSize:22,
-  borderInStyle: 'solid',
-  borderBottomWidth:0,
-  borderRightWidth:1,
-  borderColor:'black',
-  borderWidth: 0, borderColor: 'black', borderStyle: 'solid' ,
-borderRadius:10,
-margin:10,
-alignSelf:'center',
-padding:2,
-backgroundColor:'white',
-fontWeight:'bold',
-shadowColor:'black',
-shadowOpacity:7,
-elevation:3,
-shadowOffset:{width:5,height:10},
-color:'white'
-
-
-
-
-
-},
-
-menubuttonstyle:{
-  
-  textTransform:'uppercase',
-
-  borderInStyle: 'solid',
-  borderColor:'black',
-  borderWidth: 2, borderColor: 'black', borderStyle: 'solid' ,
-
-padding:10,
-backgroundColor:'white',
-flex: 0, 
-bottom:0,
-fontWeight:'bold'
-
-
-
-
-},
 
     textstyle:{
       margin:20,
@@ -295,7 +159,7 @@ borderBottomColor:'blue',
   margin:10,
   
   marginLeft:16,
-  padding:15,
+
   width:335,
   alignItems: 'center',
   justifyContent: 'center',

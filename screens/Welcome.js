@@ -262,7 +262,7 @@ paddingBottom:100,
   },
   textstyle:{
     margin:5,
-    padding: 0,
+
     fontSize:30,
     
  

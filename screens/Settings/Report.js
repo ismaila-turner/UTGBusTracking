@@ -201,111 +201,6 @@ marginRight:15,
 textAlign:'center',
 
     },
-    facilitytext:{
-marginLeft:5,
-    color:'grey',
-    
-    },
-
-menucontainer:{
-    marginTop:'30',
-    alignItems:'center',
-  
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  justifyContent:'space-between',
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:5,
-   borderInStyle: 'solid',
-borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
-
-textTransform:'uppercase',
-
-
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
-
-
-topmenu:{
- 
-
-  justifyContent: 'flex-end', padding: 0, 
-  flexDirection:'row',
-  
-  justifyContent:'space-between',
-  borderTopColor:'black',
-
-  textTransform:'uppercase',
-margin:4,
-   borderInStyle: 'solid',
-borderColor:'black',
-borderColor: 'black', borderStyle: 'solid' ,
-
-textTransform:'uppercase',
-fontWeight:'bold',
-
-bottom:0,
-left: 0,
-right: 0,
-
-
-},
-
-
-buttonmenustyle:{
-  
-  textTransform:'uppercase',
-fontWeight:'bold',
-fontSize:22,
-  borderInStyle: 'solid',
-  borderBottomWidth:0,
-  borderRightWidth:1,
-  borderColor:'black',
-  borderWidth: 0, borderColor: 'black', borderStyle: 'solid' ,
-borderRadius:10,
-margin:10,
-alignSelf:'center',
-padding:2,
-backgroundColor:'white',
-fontWeight:'bold',
-shadowColor:'black',
-shadowOpacity:7,
-elevation:3,
-shadowOffset:{width:5,height:10},
-color:'white'
-
-
-
-
-
-},
-
-menubuttonstyle:{
-  
-  textTransform:'uppercase',
-
-  borderInStyle: 'solid',
-  borderColor:'black',
-  borderWidth: 2, borderColor: 'black', borderStyle: 'solid' ,
-
-padding:10,
-backgroundColor:'white',
-flex: 0, 
-bottom:0,
-fontWeight:'bold'
-
-
-
-
-},
 
     textstyle:{
       margin:20,
@@ -318,12 +213,7 @@ fontWeight:'bold'
       alignSelf: 'center',
       textTransform:'capitalize',
     },
-    buttonstyle:{
-     margin:5,
-      backgroundColor:'lightgreen',
-      padding:5,
-      borderRadius:20,
-    },
+  
     inputstyle:{
   
   
@@ -340,7 +230,7 @@ borderBottomColor:'blue',
   margin:10,
   
   marginLeft:16,
-  padding:15,
+
   width:335,
   alignItems: 'center',
   justifyContent: 'center',
