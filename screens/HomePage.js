@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import {StyleSheet, View, Text, TextInput, Image, ScrollView ,Dimensions, Share, Alert } from 'react-native';
-import{TouchableOpacity} from 'react-native';
+import{TouchableOpacity,} from 'react-native';
 import  {  useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import firebase from '../firebase';
@@ -15,7 +15,7 @@ import * as Location from 'expo-location';
 import axios from 'axios';
 import { useRoute } from '@react-navigation/native';
 import NetInfo from "@react-native-community/netinfo";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const HomePage = ({navigation}) => {
   const route = useRoute();
   const { userId } = route.params;
@@ -89,42 +89,71 @@ const HomePage = ({navigation}) => {
   
 
 
-
-
   useEffect(() => {
-    // Get the user's current location
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.error('Permission to access location was denied');
-        return;
+    const checkLocationAlert = async () => {
+      try {
+        // Check if the alert has been shown before
+        const alertShown = await AsyncStorage.getItem('locationAlertShown');
+
+        if (!alertShown) {
+          // Show the location access alert
+          Alert.alert(
+            'Location Access Required',
+            'To provide you with a personalized experience, this app requires access to your location. ' +
+            'Your location data will be used to enhance features, find nearby Drivers, and improve overall app functionality. ' +
+            'Rest assured, your location information is used solely within the app and is not shared with any third parties.',
+            [
+              {
+                text: 'OK',
+                onPress: async () => {
+                  // Save that the alert has been shown
+                  await AsyncStorage.setItem('locationAlertShown', 'true');
+
+                  // Get the user's current location after the user acknowledges the alert
+                  let { status } = await Location.requestForegroundPermissionsAsync();
+                  if (status === 'granted') {
+                    try {
+                      let location = await Location.getCurrentPositionAsync({});
+                      setUserLocation({
+                        latitude: location.coords.latitude,
+                        longitude: location.coords.longitude,
+                      });
+
+                      setRegion({
+                        ...region,
+                        latitude: location.coords.latitude,
+                        longitude: location.coords.longitude,
+                      });
+
+                      // Perform reverse geocoding to get the user's address (street name)
+                      const addressResponse = await Location.reverseGeocodeAsync({
+                        latitude: location.coords.latitude,
+                        longitude: location.coords.longitude,
+                      });
+
+                      // Extract the street name from the address response
+                      if (addressResponse && addressResponse.length > 0) {
+                        setUserAddress(addressResponse[0].street);
+                      }
+                    } catch (error) {
+                      console.error('Error getting location:', error);
+                    }
+                  } else {
+                    console.error('Permission to access location was denied');
+                  }
+                },
+              },
+            ],
+          );
+        }
+      } catch (error) {
+        console.error('Error checking location alert:', error);
       }
+    };
 
-      let location = await Location.getCurrentPositionAsync({});
-      setUserLocation({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
-
-      setRegion({
-        ...region,
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
-      
-      // Perform reverse geocoding to get the user's address (street name)
-      const addressResponse = await Location.reverseGeocodeAsync({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
-
-      // Extract the street name from the address response
-      if (addressResponse && addressResponse.length > 0) {
-        setUserAddress(addressResponse[0].street);
-     
-      }
-    })();
+    checkLocationAlert();
   }, []);
+  
 
 
 
@@ -485,22 +514,7 @@ color:'white'
       alignSelf: 'center',
       textTransform:'capitalize',
     },
-    buttonstyle:{
-     
-      
-      margin:5,
-      backgroundColor:'lightgreen',
-      padding:5,
-      borderRadius:20,
-     
-     
-     
-       
-       
-     
-    
   
-    },
     inputstyle:{
   
   

@@ -288,7 +288,7 @@ const changePassword = (email) => {
 {loading && (
         <ActivityIndicator
           size="large"
-          color="blue"
+          color="white"
           style={styles.activityIndicator}
         />
       )}
@@ -337,7 +337,7 @@ const changePassword = (email) => {
 
   <View style={styles.container}>
     
-      <Text   style={{color:'white',fontSize:20,marginTop:250,alignSelf:'center'}}  >Deverlop By SICT</Text>
+      <Text   style={{color:'white',fontSize:20,marginTop:250,alignSelf:'center'}}  >Deverlop By Turner</Text>
     </View>
 
  <StatusBar style="auto" />
@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
     margin:12,
   
     padding:5,
-    borderRadius:10,
+   
     color:'black' ,  
    backgroundColor:'red'
      

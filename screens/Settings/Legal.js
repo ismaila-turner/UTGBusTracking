@@ -94,7 +94,7 @@ paddingBottom:20,
 
      
     alignSelf: 'center',
-   textAlign:'center',
+
      
       backgroundColor: 'white',
      
@@ -127,22 +127,7 @@ marginLeft:5,
       alignSelf: 'center',
       textTransform:'capitalize',
     },
-    buttonstyle:{
-     
-      
-      margin:5,
-      backgroundColor:'lightgreen',
-      padding:5,
-      borderRadius:20,
-     
-     
-     
-       
-       
-     
-    
-  
-    },
+ 
     inputstyle:{
   
   
@@ -158,7 +143,7 @@ padding:15,
 borderBottomColor:'blue',
   margin:10,
   
-  marginLeft:16,
+
 
   width:335,
   alignItems: 'center',

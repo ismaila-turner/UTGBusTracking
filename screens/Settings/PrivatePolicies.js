@@ -101,7 +101,7 @@ paddingBottom:20,
 
      
     alignSelf: 'center',
-   textAlign:'center',
+
      
       backgroundColor: 'white',
      
@@ -150,32 +150,7 @@ marginLeft:5,
     
   
     },
-    inputstyle:{
   
-  
- 
- 
-shadowColor:'black',
-shadowOpacity:0.5,
-elevation:3,
-shadowOffset:{width:5,height:5},
-padding:15,
-  borderWidth:0.5, 
-  backgroundColor:'white',
-borderBottomColor:'blue',
-  margin:10,
-  
-  marginLeft:16,
-
-  width:335,
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius:20,
-  
-  color:'black'
-  
-  
-    },
     footer: {
       position: 'absolute',
       left: 0,

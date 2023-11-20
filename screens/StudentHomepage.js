@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     container: {
      height:'100%',
    margin:0,
-width:1000,
+
      
 
 paddingBottom:20,
@@ -266,22 +266,7 @@ fontWeight:'bold'
       alignSelf: 'center',
       textTransform:'capitalize',
     },
-    buttonstyle:{
-     
-      
-      margin:5,
-      backgroundColor:'lightgreen',
-      padding:5,
-      borderRadius:20,
-     
-     
-     
-       
-       
-     
-    
-  
-    },
+   
     inputstyle:{
   
   

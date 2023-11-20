@@ -557,34 +557,6 @@ const styles = StyleSheet.create({
 
   },
 
-  buttonmenustyle:{
-  
-    textTransform:'uppercase',
-  fontWeight:'bold',
-  fontSize:22,
-    borderInStyle: 'solid',
-    borderBottomWidth:0,
-    borderRightWidth:1,
-    borderColor:'black',
-    borderWidth: 0, borderColor: 'black', borderStyle: 'solid' ,
-  borderRadius:10,
-  margin:10,
-  alignSelf:'center',
-  padding:2,
-  backgroundColor:'white',
-  fontWeight:'bold',
-  shadowColor:'black',
-  shadowOpacity:7,
-  elevation:3,
-  shadowOffset:{width:5,height:10},
-  color:'white'
-  
-  
-  
-  
-  
-  },
-
   header: {
     alignItems: 'center',
     paddingTop: 40,

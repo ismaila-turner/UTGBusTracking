@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {StyleSheet, View, Image, Text,ScrollView,TouchableOpacity } from 'react-native';
+import {StyleSheet, View, Image, Text,ScrollView,TouchableOpacity,Alert } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { ref, onValue, set ,get } from 'firebase/database';
 import { getDatabase } from 'firebase/database';
@@ -135,7 +135,7 @@ const HomePage2= ({navigation}) => {
           alignSelf: 'center',
           color: isConnected ? 'blue' : 'red',
         }}>
-          You are currently {isConnected ? 'Tracking Buses. Make sure to keep your internet connection on. Click on the buses to see their current location' : 'out of track. Not connected to the internet.'}
+          You are currently {isConnected ? 'Tracking Buses. Make sure to keep your internet connection on. Click on the buses to see their current location( poor internet connection will not show buses current location if tab)' : 'out of track. Not connected to the internet.'}
         </Text>
       
 
@@ -176,117 +176,91 @@ const HomePage2= ({navigation}) => {
   );
 };
 const styles = StyleSheet.create({
-    container: {
-     height:'100%',
-   margin:0,
-
-     
-
-paddingBottom:20,
-
-    
+  container: {
+    height: '100%',
+    margin: 0,
+    paddingBottom: 20,
     alignSelf: 'center',
-   textAlign:'center',
- 
-      backgroundColor: 'white',
-     
-     
-  
-  
-     
-    },
-    calloutText: {
-      color: 'black',
-      width:200, margin:5,
-      fontSize:16,
-  
-      fontWeight:'500',alignSelf: 'center' 
-       // Text color
-    },
- 
-    text: {
-      fontSize: 20,
-      color: 'white',
-      fontWeight: 'bold',
-    },
-    blueBackground: {
-      backgroundColor: 'blue',
-    },
-    redBackground: {
-      backgroundColor: 'red',
-    },
-    greenBackground: {
-      backgroundColor: 'green',
-    },
-    
-    
-    facility:{
-flexDirection:'row',
-marginRight:15,
-textAlign:'center',
+    textAlign: 'center',
+    backgroundColor: 'white',
+  },
+  buttonmenustyle: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    fontSize: 15,
+    borderBottomWidth: 0,
+    margin: 7,
+    alignSelf: 'center',
+    padding: 2,
+    backgroundColor: 'white',
+    shadowColor: 'black',
+    shadowOffset: { width: 5, height: 10 },
+    color: 'white',
+  },
+  calloutText: {
+    color: 'black',
+    width: 200,
+    margin: 5,
+    fontSize: 16,
+    fontWeight: '500',
+    alignSelf: 'center',
+  },
+  text: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  blueBackground: {
+    backgroundColor: 'blue',
+  },
+  redBackground: {
+    backgroundColor: 'red',
+  },
+  greenBackground: {
+    backgroundColor: 'green',
+  },
+  facility: {
+    flexDirection: 'row',
+    marginRight: 15,
+    textAlign: 'center',
+  },
+  textstyle: {
+    margin: 20,
+    padding: 5,
+    fontSize: 15,
+    justifyContent: 'center',
+    color: 'white',
+    alignSelf: 'center',
+    textTransform: 'capitalize',
+  },
+  inputstyle: {
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    elevation: 3,
+    shadowOffset: { width: 5, height: 5 },
+    borderWidth: 0.5,
+    backgroundColor: 'white',
+    borderBottomColor: 'blue',
+    margin: 10,
+    marginLeft: 16,
+    padding: 15,
+    width: 335,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    color: 'black',
+  },
+  footer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 10,
+    height: 24,
+    margin: 0,
+    color: 'white',
+  },
+});
 
-    },
-
- 
-
-
-
-
-
-    textstyle:{
-      margin:20,
-      padding: 5,
-      fontSize:15,
-     
-      
-      justifyContent:'center',
-       color:'white',
-      alignSelf: 'center',
-      textTransform:'capitalize',
-    },
-   
-    inputstyle:{
-  
-  
- 
- 
-shadowColor:'black',
-shadowOpacity:0.5,
-elevation:3,
-shadowOffset:{width:5,height:5},
-
-  borderWidth:0.5, 
-  backgroundColor:'white',
-borderBottomColor:'blue',
-  margin:10,
-  
-  marginLeft:16,
-  padding:15,
-  width:335,
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius:20,
-  
-  color:'black'
-  
-  
-    },
-    footer: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      bottom: 10,
-      height: 24,
-      margin:0,
-      
-  color:'white'
-    },
-
-
-
-
-
-  });
 ;
 
 export default HomePage2;

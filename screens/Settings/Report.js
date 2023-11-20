@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text,TextInput,Button, Dimensions} from 'react-native'
+import {StyleSheet, View, Text,TextInput,Button, Dimensions,ActivityIndicator} from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { Alert } from 'react-native';
@@ -80,15 +80,15 @@ function refresReport() {
     
 //     }
 //   }
-
+const [loading, setLoading] = useState(false);
 // insert a data function
 const insertData = async (e) => {
   e.preventDefault();
 
-  if (!report  ) {
+  if (!report) {
     Alert.alert(
       'Error',
-      'All information are required',
+      'All information is required',
       [
         { text: 'OK', onPress: () => console.log('OK pressed') },
       ],
@@ -96,28 +96,30 @@ const insertData = async (e) => {
     );
     return;
   }
-     
 
-addDoc(collection(db, "reportTable"), {
-report: report,
+  setLoading(true); // Set loading to true before the asynchronous operation
 
-timestamp: new Date().toISOString(),
-})
-.then(() => {
-  Alert.alert(
-    'Success',
-    'Message has been submitted.',
-    [
-      { text: 'OK', onPress: () => console.log('OK pressed') },
-    ],
-    { cancelable: false }
-  );
+  try {
+    await addDoc(collection(db, "reportTable"), {
+      report: report,
+      timestamp: new Date().toISOString(),
+    });
 
-  refresReport()
-})
-.catch((error) => {
-  alert(error.message);
-});
+    Alert.alert(
+      'Success',
+      'Message has been submitted.',
+      [
+        { text: 'OK', onPress: () => console.log('OK pressed') },
+      ],
+      { cancelable: false }
+    );
+
+    refresReport();
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    setLoading(false); // Set loading to false regardless of success or failure
+  }
 };
 
 function refresReport() {
@@ -150,7 +152,7 @@ onChangeText={text => setReport(text)} onFocus={() => setError(false)}  value={r
 
 
 <Button title='Submit Report' style={{ padding: 10 ,color:'pink'}} onPress={insertData} /> 
-
+{loading && <ActivityIndicator size="large" color="blue" />}
 {/* <Button title='SHOW' style={{ padding: 10 ,color:'pink'}} onPress={displayData} />  */}
 
 
@@ -179,7 +181,7 @@ onChangeText={text => setReport(text)} onFocus={() => setError(false)}  value={r
 
 const styles = StyleSheet.create({
     container: {
-     height:'100%',
+
  
      width:350,
 
@@ -189,17 +191,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
    textAlign:'center',
      
-      backgroundColor: 'white',
+
      
 
   
   
      
-    },facility:{
-flexDirection:'row',
-marginRight:15,
-textAlign:'center',
-
     },
 
     textstyle:{
@@ -214,32 +211,7 @@ textAlign:'center',
       textTransform:'capitalize',
     },
   
-    inputstyle:{
   
-  
- 
- 
-shadowColor:'black',
-shadowOpacity:0.5,
-elevation:3,
-shadowOffset:{width:5,height:5},
-padding:15,
-  borderWidth:0.5, 
-  backgroundColor:'white',
-borderBottomColor:'blue',
-  margin:10,
-  
-  marginLeft:16,
-
-  width:335,
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius:20,
-  
-  color:'black'
-  
-  
-    },
     footer: {
       position: 'absolute',
       left: 0,

@@ -283,7 +283,7 @@ paddingBottom:100,
   
    backgroundColor:'red',
    
-   borderRadius:20,
+
    
   
 

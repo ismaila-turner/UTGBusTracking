@@ -329,7 +329,7 @@ borderBottomColor:'blue',
   margin:10,
   marginTop:20,
 
-  padding:15,
+
   width:330,
   alignItems: 'center',
   justifyContent: 'center',

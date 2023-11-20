@@ -70,6 +70,7 @@ function homepage() {
 
 
 const [loading, setLoading] = useState(false);
+
 const handleSignIn = () => {
   if (!email || !password) {
     Alert.alert(
@@ -130,6 +131,7 @@ const handleSignIn = () => {
     }
   });
 };
+
 
 
 const changePassword = (email) => {
@@ -245,68 +247,56 @@ const changePassword = (email) => {
 </ScrollView>
   )
 }
-
 const styles = StyleSheet.create({
   container: {
-    
-   
     alignSelf: 'center',
- 
- 
-paddingBottom:100,
-
-   backgroundColor:'black',
+    paddingBottom: 100,
+    backgroundColor: 'black',
+    width: 400,
+  },  buttonstyle:{
    
- width:400,
-
-   
-  },
-  activityIndicator: {
-
-  },
-  textstyle:{
-    margin:5,
-    padding: 0,
-    fontSize:30,
     
- 
-     color:'red',
-    alignSelf: 'center',
-   
-    fontWeight:'600',
-    textTransform:'uppercase',
-     fontStyle: 'italic',
-  },
+    margin:12,
   
-  inputstyle:{
+    padding:5,
+   
+    color:'black' ,  
+   backgroundColor:'red'
+     
+     
+   
+  
 
-
-
-
-backgroundColor:'gray',
-fontSize:18,
-margin:5,
-
-// marginLeft:8,
-padding:14,
-width:360,
-justifyContent:'center',
-alignItems:'center',
-alignSelf:'center',
-
-borderRadius:7,
-
-
-
+  },
+  activityIndicator: {},
+  textstyle: {
+    margin: 5,
+    padding: 0,
+    fontSize: 30,
+    color: 'red',
+    alignSelf: 'center',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    fontStyle: 'italic',
+  },
+  inputstyle: {
+    backgroundColor: 'gray',
+    fontSize: 18,
+    margin: 5,
+    padding: 14,
+    width: 360,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderRadius: 7,
   },
   footer: {
-    
     left: 0,
     right: 0,
     bottom: 10,
     height: 24,
-    marginBottom:0,
-    
-color:'black'
+    marginBottom: 0,
+    color: 'black',
   },
 });
+

@@ -15,14 +15,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ismailajavis.BusDriversTracker"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/bus.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ismailajavis.BusDriversTracker"
+      "package": "com.ismailajavis.BusDriversTracker",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"

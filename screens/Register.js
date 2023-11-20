@@ -196,22 +196,7 @@ fontSize:17,
   },
 
 
-  buttonstyle:{
-   
-    
-    margin:5,
-    backgroundColor:'lightgreen',
-    padding:5,
-    borderRadius:20,
-   
-   
-   
-     
-     
-   
   
-
-  },
   inputstyle:{
 
 
@@ -221,7 +206,7 @@ backgroundColor:'white',
 
 margin:10,
 
-marginLeft:0,
+
 padding:15,
 width:330,
 alignItems: 'center',
