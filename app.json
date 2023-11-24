@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ismailajavis.BusDriversTracker"
+      "bundleIdentifier": "com.ismailajavis.BusDriversTracker",  "buildNumber": "7"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +24,12 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.ismailajavis.BusDriversTracker",
-      "versionCode": 2
+      "versionCode": 4,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCR8ZTcDJPt3AYyvffaiCgPqAb40VLUORM"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

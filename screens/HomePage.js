@@ -13,9 +13,11 @@ import db from '../firebase'
 import MapView, { Marker,Callout  } from 'react-native-maps';
 import * as Location from 'expo-location';
 import axios from 'axios';
+
 import { useRoute } from '@react-navigation/native';
 import NetInfo from "@react-native-community/netinfo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const HomePage = ({navigation}) => {
   const route = useRoute();
   const { userId } = route.params;
@@ -86,60 +88,55 @@ const HomePage = ({navigation}) => {
     // Call the fetchUsers function when the component mounts
     fetchUsers();
   }, []);
-  
-
-
+  const [locationAlertShown, setLocationAlertShown] = useState(false);
   useEffect(() => {
     const checkLocationAlert = async () => {
       try {
-        // Check if the alert has been shown before
+        // Check if the custom alert has been shown before
         const alertShown = await AsyncStorage.getItem('locationAlertShown');
 
         if (!alertShown) {
-          // Show the location access alert
+          // Show the custom location access alert
           Alert.alert(
             'Location Access Required',
             'To provide you with a personalized experience, this app requires access to your location. ' +
-            'Your location data will be used to enhance features, find nearby Drivers, and improve overall app functionality. ' +
-            'Rest assured, your location information is used solely within the app and is not shared with any third parties.',
+              'Your location data will be used to enhance features, find nearby Drivers, and improve overall app functionality. ' +
+              'Rest assured, your location information is used solely within the app and is not shared with any third parties.',
             [
               {
                 text: 'OK',
                 onPress: async () => {
-                  // Save that the alert has been shown
+                  // Save that the custom alert has been shown
                   await AsyncStorage.setItem('locationAlertShown', 'true');
+                  setLocationAlertShown(true);
 
-                  // Get the user's current location after the user acknowledges the alert
-                  let { status } = await Location.requestForegroundPermissionsAsync();
-                  if (status === 'granted') {
-                    try {
-                      let location = await Location.getCurrentPositionAsync({});
-                      setUserLocation({
-                        latitude: location.coords.latitude,
-                        longitude: location.coords.longitude,
-                      });
+                  // Request location permission
+                  if (locationAlertShown) {
+                    const { status } = await Location.requestForegroundPermissionsAsync();
+                    if (status === 'granted') {
+                      // Get the user's current location
+                      try {
+                        const location = await Location.getCurrentPositionAsync({});
+                        const { latitude, longitude } = location.coords;
 
-                      setRegion({
-                        ...region,
-                        latitude: location.coords.latitude,
-                        longitude: location.coords.longitude,
-                      });
+                        // Create a reference to the Firebase location node for the current user
+                        const locationRef = push(ref(getDatabase(), `drivers/${userId}/locations`));
 
-                      // Perform reverse geocoding to get the user's address (street name)
-                      const addressResponse = await Location.reverseGeocodeAsync({
-                        latitude: location.coords.latitude,
-                        longitude: location.coords.longitude,
-                      });
+                        // Update location data in Firebase Realtime Database
+                        set(locationRef, {
+                          latitude,
+                          longitude,
+                          timestamp: serverTimestamp(),
+                        });
 
-                      // Extract the street name from the address response
-                      if (addressResponse && addressResponse.length > 0) {
-                        setUserAddress(addressResponse[0].street);
+                        const address = await getReverseGeocode(latitude, longitude);
+                        // Update user addresses or perform other actions
+                      } catch (error) {
+                        console.error('Error getting location:', error);
                       }
-                    } catch (error) {
-                      console.error('Error getting location:', error);
+                    } else {
+                      console.error('Permission to access location was denied');
                     }
-                  } else {
-                    console.error('Permission to access location was denied');
                   }
                 },
               },
@@ -152,49 +149,57 @@ const HomePage = ({navigation}) => {
     };
 
     checkLocationAlert();
-  }, []);
+  }, [userId, locationAlertShown]);
+
   
 
 
 
-
   useEffect(() => {
-    
     const startTracking = async () => {
+      // Request location permission
       const { status } = await Location.requestForegroundPermissionsAsync();
+  
       if (status !== 'granted') {
         console.error('Permission to access location was denied');
+  
+        Alert.alert(
+          'Location Permission Required',
+          'This app uses your location to provide real-time updates on nearby drivers and improve the accuracy of our services. Your location data is securely stored and used solely for the purpose of connecting you with nearby drivers. We prioritize your privacy and do not share your location information with third parties. Please enable location services in your device settings to enjoy the full functionality of our app.',
+          [
+            { text: 'OK', onPress: () => console.log('OK Pressed') },
+          ]
+        );
         return;
       }
-
-      // Get the current location
+  
+      // Rest of your code to track location
       const location = await Location.getCurrentPositionAsync({});
       const { latitude, longitude } = location.coords;
-
+  
       // Create a reference to the Firebase location node for the current user
       const locationRef = push(ref(getDatabase(), `drivers/${userId}/locations`));
-
+  
       // Update location data in Firebase Realtime Database
       set(locationRef, {
         latitude,
         longitude,
         timestamp: serverTimestamp(),
       });
-
+  
       const address = await getReverseGeocode(latitude, longitude);
       setUserAddresses(prevAddresses => ({
         ...prevAddresses,
         [userId]: address || 'Address not available',
       }));
-
-
+  
       // Perform reverse geocoding to get the formatted address
       getReverseGeocode(latitude, longitude);
     };
-
+  
     // Start tracking when the component mounts
     startTracking();
-  },    [ userId]);
+  }, [userId]);
 
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -244,7 +249,7 @@ const HomePage = ({navigation}) => {
   const getReverseGeocode = async (latitude, longitude) => {
     try {
       const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBRSqbeQbTsjzOs6wSwvadHltel8eK18Xw`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyCR8ZTcDJPt3AYyvffaiCgPqAb40VLUORM`
       );
   
       // Extract the formatted address from the response

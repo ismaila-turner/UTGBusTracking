@@ -49,14 +49,6 @@ useEffect(()=>{
 return unsub
 }, [dependency1, dependency2] )
 
-// if (loading) {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <ActivityIndicator />
-//       <Text style={{ color:"red" }}  >Loading...</Text>
-//     </View>
-//   );
-// }
 
 
 
@@ -99,14 +91,7 @@ const handleSignIn = () => {
             routes: [{ name: 'HomePage', params: { userId: userId } }], // Pass userId as a parameter
           });
 
-          if (user) {
-            Alert.alert(
-              'Success',
-              'Welcome ',
-              [{ text: 'OK', onPress: () => console.log('Success') }],
-              { cancelable: false }
-            );
-          }
+        
         })
         .catch((error) => {
           console.log(error);
